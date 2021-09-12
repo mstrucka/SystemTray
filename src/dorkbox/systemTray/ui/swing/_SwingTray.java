@@ -161,12 +161,16 @@ class _SwingTray extends Tray {
                             @Override
                             public
                             void mousePressed(MouseEvent e) {
-                                TrayPopup popupMenu = (TrayPopup) _native;
-                                Point mousePosition = e.getPoint();
+                                if(e.getButton() == 1) {
+//                                    getCallback().actionPerformed(new );
+                                } else {
+                                    TrayPopup popupMenu = (TrayPopup) _native;
+                                    Point mousePosition = e.getPoint();
 
-                                double scale = SizeAndScalingUtil.getWindowsDpiScaleForMouseClick(mousePosition.x, mousePosition.y);
-                                Point point = new Point((int) (mousePosition.x * scale), (int) (mousePosition.y * scale));
-                                popupMenu.doShow(point, 0);
+                                    double scale = SizeAndScalingUtil.getWindowsDpiScaleForMouseClick(mousePosition.x, mousePosition.y);
+                                    Point point = new Point((int) (mousePosition.x * scale), (int) (mousePosition.y * scale));
+                                    popupMenu.doShow(point, 0);
+                                }
                             }
                         });
 

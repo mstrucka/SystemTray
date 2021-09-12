@@ -22,6 +22,7 @@ import static dorkbox.systemTray.util.AutoDetectTrayType.selectType;
 import java.awt.Component;
 import java.awt.GraphicsEnvironment;
 import java.awt.Image;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.InputStream;
@@ -942,6 +943,10 @@ class SystemTray {
         }
 
         menu.setImageFromTray(imageResizeUtil.shouldResizeOrCache(true, imageFile));
+    }
+
+    public void setCallback(ActionListener o) {
+        menu.setCallback(o);
     }
 
     /**

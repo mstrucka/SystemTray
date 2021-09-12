@@ -29,6 +29,7 @@ import static dorkbox.jna.windows.WindowsEventDispatch.WM_SHELLNOTIFY;
 import static dorkbox.jna.windows.WindowsEventDispatch.WM_TASKBARCREATED;
 
 import java.awt.Point;
+import java.awt.event.ActionEvent;
 import java.io.File;
 
 import javax.swing.ImageIcon;
@@ -203,6 +204,8 @@ class _WindowsNativeTray extends Tray {
 
                 switch (lp) {
                     case WM_LBUTTONUP:
+                        getCallback().actionPerformed(new ActionEvent(this, 0, "jk"));
+                        break;
                     case WM_RBUTTONUP:
                         if (popupMenu != null && User32.User32.GetCursorPos(mousePosition)) {
                             double scale = SizeAndScalingUtil.getWindowsDpiScaleForMouseClick(mousePosition.x, mousePosition.y);

@@ -82,6 +82,14 @@ class TestTray {
         systemTray.setTooltip("Mail Checker");
         systemTray.setImage(LT_GRAY_TRAIN);
         systemTray.setStatus("No Mail");
+        systemTray.setCallback(e -> {
+            // open app.notello.com
+            try {
+                Desktop.browseURL("http://localhost:6381");
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
 
         callbackGray = e->{
             final MenuItem entry = (MenuItem) e.getSource();
