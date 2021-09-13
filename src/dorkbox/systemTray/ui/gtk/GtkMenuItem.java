@@ -159,7 +159,7 @@ class GtkMenuItem extends GtkBaseMenuItem implements MenuItemPeer, GCallback {
                     // we want it to run on our own with our own action event info (so it is consistent across all platforms)
                     EventDispatch.runLater(()->{
                         try {
-                            cb.actionPerformed(new ActionEvent(menuItem, ActionEvent.ACTION_PERFORMED, ""));
+                            cb.actionPerformed(new ActionEvent(menuItem, ActionEvent.ACTION_PERFORMED, "Gtk Mouse1 pressed", e.getModifiers()));
                         } catch (Throwable throwable) {
                             SystemTray.logger.error("Error calling menu entry {} click event.", menuItem.getText(), throwable);
                         }

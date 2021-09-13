@@ -20,6 +20,7 @@ import java.awt.Image;
 import java.awt.Point;
 import java.awt.SystemTray;
 import java.awt.TrayIcon;
+import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
@@ -162,7 +163,7 @@ class _SwingTray extends Tray {
                             public
                             void mousePressed(MouseEvent e) {
                                 if(e.getButton() == 1) {
-//                                    getCallback().actionPerformed(new );
+                                    getCallback().actionPerformed(new ActionEvent(this, 0, "Swing mouse1 pressed"));
                                 } else {
                                     TrayPopup popupMenu = (TrayPopup) _native;
                                     Point mousePosition = e.getPoint();

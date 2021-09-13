@@ -166,7 +166,6 @@ class _AppIndicatorNativeTray extends Tray {
 
                 GtkEventDispatch.dispatch(()->{
                     appIndicator.app_indicator_set_icon(imageFile.getAbsolutePath());
-
                     if (!isActive) {
                         isActive = true;
                         appIndicator.app_indicator_set_status(AppIndicator.STATUS_ACTIVE);

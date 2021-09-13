@@ -17,6 +17,7 @@ package dorkbox.systemTray.ui.gtk;
 
 import static dorkbox.jna.linux.Gtk.Gtk2;
 
+import java.awt.event.ActionEvent;
 import java.io.File;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -30,6 +31,7 @@ import dorkbox.jna.linux.structs.GdkEventButton;
 import dorkbox.systemTray.MenuItem;
 import dorkbox.systemTray.Tray;
 import dorkbox.systemTray.util.ImageResizeUtil;
+import jdk.internal.org.jline.terminal.MouseEvent;
 
 /**
  * Class for handling all system tray interactions via GTK.
@@ -165,9 +167,15 @@ class _GtkStatusIconNativeTray extends Tray {
                 void callback(Pointer notUsed, final GdkEventButton event) {
                     // show the swing menu on the EDT
                     // BUTTON_PRESS only (any mouse click)
+//                    if(event)
                     if (event.type == 4) {
+                        if(event.button == 1) {
+                            getCallback().actionPerformed(new ActionEvent(this, 0, "Gtk Mouse pressed"));
+                        }
+                        else if (event.button == 3) {
                         Gtk2.gtk_menu_popup(gtkMenu._nativeMenu, null, null, Gtk2.gtk_status_icon_position_menu,
                                             trayIcon, 0, event.time);
+                        }
                     }
                 }
             };

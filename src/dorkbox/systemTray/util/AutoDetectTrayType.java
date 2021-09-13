@@ -52,28 +52,27 @@ class AutoDetectTrayType {
 
     public static
     Class<? extends Tray> selectType(final TrayType trayType) {
-        return _WindowsNativeTray.class;
-//
-//        if (trayType == TrayType.Gtk) {
-//            return _GtkStatusIconNativeTray.class;
-//        }
-//        else if (trayType == TrayType.AppIndicator) {
-//            return _AppIndicatorNativeTray.class;
-//        }
-//        else if (trayType == TrayType.WindowsNative) {
-//            return _WindowsNativeTray.class;
-//        }
-//        else if (trayType == TrayType.Swing) {
-//            return _SwingTray.class;
-//        }
-//        else if (trayType == TrayType.Osx) {
-//            return _OsxNativeTray.class;
-//        }
-//        else if (trayType == TrayType.Awt) {
-//            return _AwtTray.class;
-//        }
 
-//        return null;
+        if (trayType == TrayType.Gtk) {
+            return _GtkStatusIconNativeTray.class;
+        }
+        else if (trayType == TrayType.AppIndicator) {
+            return _AppIndicatorNativeTray.class;
+        }
+        else if (trayType == TrayType.WindowsNative) {
+            return _WindowsNativeTray.class;
+        }
+        else if (trayType == TrayType.Swing) {
+            return _SwingTray.class;
+        }
+        else if (trayType == TrayType.Osx) {
+            return _OsxNativeTray.class;
+        }
+        else if (trayType == TrayType.Awt) {
+            return _AwtTray.class;
+        }
+
+        return null;
     }
 
     public static

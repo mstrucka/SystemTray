@@ -204,7 +204,7 @@ class _WindowsNativeTray extends Tray {
 
                 switch (lp) {
                     case WM_LBUTTONUP:
-                        getCallback().actionPerformed(new ActionEvent(this, 0, "jk"));
+                        getCallback().actionPerformed(new ActionEvent(this, 0, "WNT Mouse1 pressed"));
                         break;
                     case WM_RBUTTONUP:
                         if (popupMenu != null && User32.User32.GetCursorPos(mousePosition)) {

@@ -15,11 +15,10 @@
  */
 package dorkbox.systemTray.ui.awt;
 
-import java.awt.AWTException;
-import java.awt.Image;
-import java.awt.PopupMenu;
-import java.awt.SystemTray;
-import java.awt.TrayIcon;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.File;
 
 import javax.swing.ImageIcon;
@@ -27,7 +26,9 @@ import javax.swing.ImageIcon;
 import dorkbox.os.OS;
 import dorkbox.systemTray.MenuItem;
 import dorkbox.systemTray.Tray;
+import dorkbox.systemTray.ui.swing.TrayPopup;
 import dorkbox.systemTray.util.ImageResizeUtil;
+import dorkbox.systemTray.util.SizeAndScalingUtil;
 import dorkbox.util.SwingUtil;
 import dorkbox.util.collections.ArrayMap;
 
@@ -168,6 +169,16 @@ class _AwtTray extends Tray {
                         }
 
                         trayIcon.setPopupMenu((PopupMenu) _native);
+
+                        trayIcon.addMouseListener(new MouseAdapter() {
+                            @Override
+                            public
+                            void mousePressed(MouseEvent e) {
+                                if(e.getButton() == 1) {
+                                    getCallback().actionPerformed(new ActionEvent(this, 0, "AwtTray mouse pressed"));
+                                }
+                            }
+                        });
 
                         try {
                             tray.add(trayIcon);
