@@ -1,3 +1,14 @@
+Notello Tray Icon changelog:
+- tried to make a left-right click distinction across all the platforms
+- managed to run Swing, WindowsNative, Awt, Gtk
+- did not manage to run AppIndicator (Linux) and OsX // TODO
+
+Changes from master:
+- SystemTray has setCallback(ActionListener o)
+- callbacks return modifiers or we check for information about what button was pressed in other way, its text set to " *platformName* mouse1 pressed", subject to change
+- in autoDetectTrayType we can force Tray type for testing purposes
+- test callback for now set to Desktop.browseURL("http://localhost:6381");
+
 SystemTray
 ==========
 
