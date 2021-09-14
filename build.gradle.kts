@@ -28,17 +28,18 @@ plugins {
     id("com.dorkbox.GradleUtils") version "1.17"
     id("com.dorkbox.Licensing") version "2.5.5"
     id("com.dorkbox.VersionUpdate") version "2.3"
-    id("com.dorkbox.GradlePublish") version "1.10"
+//    id("com.dorkbox.GradlePublish") version "1.10"
 //    id("com.dorkbox.GradleModuleInfo") version "1.0"
 
     kotlin("jvm") version "1.4.32"
+    id("maven-publish")
 }
 
 object Extras {
     // set for the project
     const val description = "Cross-platform SystemTray support for Swing/AWT, GtkStatusIcon, and AppIndicator on Java 8+"
     const val group = "com.dorkbox"
-    const val version = "4.1"
+    const val version = "4.1-notello"
 
     // set as project.ext
     const val name = "SystemTray"
@@ -64,6 +65,18 @@ GradleUtils.defaultResolutionStrategy()
 // NOTE: Only support java 8 as the lowest target now. We use Multi-Release Jars to provide additional functionality as needed
 GradleUtils.compileConfiguration(JavaVersion.VERSION_1_8)
 
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = "com.dorkbox"
+            artifactId = "system-tray"
+            version = "4.1-notello"
+
+            from(components["java"])
+        }
+    }
+}
 
 licensing {
     license(License.APACHE_2) {
@@ -408,26 +421,3 @@ task("jarAllExamples") {
 }
 
 
-publishToSonatype {
-    groupId = Extras.group
-    artifactId = Extras.id
-    version = Extras.version
-
-    name = Extras.name
-    description = Extras.description
-    url = Extras.url
-
-    vendor = Extras.vendor
-    vendorUrl = Extras.vendorUrl
-
-    issueManagement {
-        url = "${Extras.url}/issues"
-        nickname = "Gitea Issues"
-    }
-
-    developer {
-        id = "dorkbox"
-        name = Extras.vendor
-        email = "email@dorkbox.com"
-    }
-}
