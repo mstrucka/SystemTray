@@ -1,3 +1,7 @@
+how to run: 
+1) open the project, run "publishToMavenLocal" in Gradle window
+2) in Notello project, in main pom.xml, change the systemTray version from "4.1" to "4.1-notello" (if this is not done already)
+
 Notello Tray Icon changelog:
 - tried to make a left-right click distinction across all the platforms
 - managed to run Swing, WindowsNative, Awt, Gtk
